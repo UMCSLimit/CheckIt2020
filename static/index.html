@@ -1,0 +1,111 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>CheckIT OpenCV 2020</title>
+        <link rel="stylesheet" type="text/css" href="/static/bulma.css">
+        <link rel="stylesheet" type="text/css" href="/static/style.css">
+    </head>
+    <body>
+        
+        <div class="container">
+            
+            <h1 style="margin-top: 100px" class="title is-1">CheckIT OpenCV 2020</h1>
+            <h1 style="" class="subtitle is-3">Dobrze trafiłeś! Tutaj rozpoczenisz swoją przygodę z komputerową analizą obrazu.</h1>
+            
+            <!-- <h1 style="margin-top: 100px" class="title is-2">Template</h1> -->
+            <!-- <h1 style="" class="subtitle is-4">Skopiuj ten kod do projektu</h1> -->
+
+            
+            <div class="control">
+                <textarea style="height: 370px;" class="textarea" readonly>
+import cv2
+import numpy as np
+
+video =  cv2.VideoCapture('http://212.182.27.87:8000/camera/mjpeg')
+while True:
+    check, frame = video.read()
+    img = cv2.flip(frame, -1)
+    # ------------- PISZEMY NASZ KOD PONIŻEJ -------------
+
+    cv2.imshow('frame', img)
+    
+    # ------------- KONIEC NASZEGO KODU ------------- 
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        video.release()
+        break
+</textarea>
+    </div>
+
+<h1 style="" class="subtitle is-4">Stream kamery jest na <a href="http://212.182.27.87:8000/camera/mjpeg">http://212.182.27.87:8000/camera/mjpeg</a>, sprawdzie sami jak wygląda</h1>
+
+            <h1 style="margin-top: 100px" class="title is-2">1. Jak wygląda obraz w cv2</h1>
+            <h1 style="" class="subtitle is-4">Obraz w opencv (cv2) to ...</h1>
+            
+
+            <h1 style="margin-top: 100px" class="title is-2">2. Kwadraty ... Okręgi ...</h1>
+            <h1 style="" class="subtitle is-4"></h1>
+
+            <div class="control">
+                <textarea style="height: 220px;" class="textarea" readonly>
+x1 = 200
+y1 = 200
+
+x2 = 600
+y2 = 600
+
+cv2.rectangle(img, (x1, y1), (x2, y2), (255,0,0), 2)
+                </textarea>
+            </div>
+
+
+                <h1 style="margin-top: 100px" class="title is-2">3. Przestrzeń gray, czyli czarno białe zdjęcie</h1>
+                <h1 style="" class="subtitle is-4"></h1>
+                <div class="control">
+                    <textarea style="height: 50px;" class="textarea" readonly>
+gray = cv2.cvtColor(img, cv2.COLOR_BGR2GRAY)
+                    </textarea>
+                </div>
+
+
+                <h1 style="margin-top: 100px" class="title is-2">4. Threshold</h1>
+                <h1 style="" class="subtitle is-4"></h1>
+                <div class="control">
+                    <textarea style="height: 50px;" class="textarea" readonly>
+ret, threshold = cv2.threshold(gray, 120, 255, cv2.THRESH_BINARY)
+                    </textarea>
+                </div>
+
+
+                <h1 style="margin-top: 100px" class="title is-2">5. HSV, funkcja InRange</h1>
+                <h1 style="" class="subtitle is-4"></h1>
+                <div class="control">
+                    <textarea style="height: 50px;" class="textarea" readonly>
+x = inrange
+                    </textarea>
+                </div>
+
+
+                <h1 style="margin-top: 100px" class="title is-2">6. Kontury, funckja findContours</h1>
+                <h1 style="" class="subtitle is-4"></h1>
+                <div class="control">
+                    <textarea style="height: 50px;" class="textarea" readonly>
+x = inrange
+                    </textarea>
+                </div>
+
+                <h1 style="margin-top: 100px" class="title is12">Zadanie 1</h1>
+                <h1 style="" class="subtitle is-3">Waszym zadaniem jest wyciągniecie obiektu ze względu na jasność i zrobić maskę. Musicie to zrobić za pomocą funkcji threshold. Wartości thresholda musiscie dobrać sami.</h1>
+
+                <!-- FILTROWANIE KONTUR -->
+
+                <h1 style="margin-top: 100px" class="title is12">Zadanie 2</h1>
+                <h1 style="" class="subtitle is-3">Kolejnym zadaniem jest wyznaczenie odpowiedniego koloru. Zrobicie to za pomocą przestrzeni HSV.</h1>
+
+                <h1 style="margin-top: 100px" class="title is12">Zadanie 3</h1>
+                <h1 style="" class="subtitle is-3">Ostatnim zadaniem będzie filtrowanie obiektów po wielkości i innych parametrach. Za pomocą konturów możecie wyznaczyć w którym miejscu znajduje się dany obiekt.</h1>
+
+
+                <div style="height: 10px; margin-top: 100px;"></div>
+        </div>
+    </body>
+</html>
